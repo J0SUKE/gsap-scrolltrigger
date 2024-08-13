@@ -1,4 +1,6 @@
 import './style.css'
+import './parallax-sections.css'
+import './pinned-gallery.scss'
 import Scroll from './components/scroll'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -11,8 +13,43 @@ class App {
   constructor() {
     this.scroll = new Scroll()
 
-    //this.runTests()
+    this.setupPerspectiveGallery()
     this.setupPinnedSections()
+  }
+
+  setupPerspectiveGallery() {
+    const container = document.querySelector('.pinned-gallery')
+    const perspectiveWrapper = document.querySelector('.pinned-gallery-wrapper')
+    const medias = [...document.querySelectorAll('.pinned-gallery__media-wrapper')] as HTMLElement[]
+    const scales: number[] = []
+    medias.forEach((media) => {
+      scales.push(parseFloat(media.dataset.endScale as string))
+    })
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top top',
+        end: () => '+' + window.innerHeight * 3,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+      },
+    })
+
+    tl.to(perspectiveWrapper, {
+      z: '50dvh',
+    })
+
+    medias.forEach((media, index) => {
+      tl.to(
+        media,
+        {
+          scale: scales[index],
+        },
+        '<='
+      )
+    })
   }
 
   setupPinnedSections() {
@@ -30,10 +67,11 @@ class App {
       scrollTrigger: {
         trigger: container,
         start: 'top top',
-        end: () => `+` + window.innerHeight * 3,
+        end: () => '+' + window.innerHeight * 3,
         scrub: true,
         pin: true,
         anticipatePin: 1,
+        markers: true,
       },
     })
 
