@@ -1,10 +1,10 @@
-.pinned-gallery
+.perspective-gallery
 {
-  height: 200dvh;
+  height: 300dvh;
 }
 
 
-.pinned-gallery-container {
+.perspective-gallery-container {
   height: 100dvh;
   overflow: hidden;
   box-sizing: border-box;
@@ -12,13 +12,13 @@
   perspective: 100dvh;
 }
 
-.pinned-gallery__media-wrapper {
+.perspective-gallery__media-wrapper {
   position: absolute;
   inset: 0;
   height: 100dvh;
   width: 100%;
 }
-.pinned-gallery-wrapper
+.perspective-gallery-wrapper
 {  
   position: absolute;
   inset: 0;
@@ -27,7 +27,7 @@
 }
 
 
-.pinned-gallery__media{
+.perspective-gallery__media{
 
   img {
     max-width: 100%;

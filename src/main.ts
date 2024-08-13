@@ -1,6 +1,6 @@
 import './style.css'
 import './parallax-sections.css'
-import './pinned-gallery.scss'
+import './perspective-gallery.scss'
 import Scroll from './components/scroll'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -14,13 +14,13 @@ class App {
     this.scroll = new Scroll()
 
     this.setupPerspectiveGallery()
-    this.setupPinnedSections()
+    this.setupParallaxSections()
   }
 
   setupPerspectiveGallery() {
-    const container = document.querySelector('.pinned-gallery')
-    const perspectiveWrapper = document.querySelector('.pinned-gallery-wrapper')
-    const medias = [...document.querySelectorAll('.pinned-gallery__media-wrapper')] as HTMLElement[]
+    const container = document.querySelector('.perspective-gallery')
+    const perspectiveWrapper = document.querySelector('.perspective-gallery-wrapper')
+    const medias = [...document.querySelectorAll('.perspective-gallery__media-wrapper')] as HTMLElement[]
     const scales: number[] = []
     medias.forEach((media) => {
       scales.push(parseFloat(media.dataset.endScale as string))
@@ -52,7 +52,7 @@ class App {
     })
   }
 
-  setupPinnedSections() {
+  setupParallaxSections() {
     const sections = [...document.querySelectorAll('.pinned-section')] as HTMLElement[]
     const container = document.querySelector('.parallax-sections')
     const images = [...document.querySelectorAll('.img')]
@@ -71,7 +71,6 @@ class App {
         scrub: true,
         pin: true,
         anticipatePin: 1,
-        markers: true,
       },
     })
 

@@ -1,8 +1,13 @@
+.parallax-sections-wrapper {
+  height: 400vh;
+}
+
 .parallax-sections {
   position: relative;
   width: 100%;
   height: 100dvh;
   overflow: hidden;
+  color: white;
 }
 
 .pinned-section {
